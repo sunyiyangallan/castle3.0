@@ -66,10 +66,10 @@
     <Compile Include="Assets\FRL.XR\FRL\XR\Editor\XRManagerEditor.cs" />
     <Compile Include="Assets\Low Poly Animated Animals\- Scripts\AnimalScripts\Editor\AnimalManagerEditor.cs" />
     <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>C:/Users/FRL/Documents/GitHub/castle2.0/sig18_mini/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/FRL/Desktop/castle3.0/sig18_mini/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/FRL/Documents/GitHub/castle2.0/sig18_mini/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/FRL/Desktop/castle3.0/sig18_mini/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.1.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -309,7 +309,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.1.5f1/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="FlatBuffers">
-      <HintPath>C:/Users/FRL/Documents/GitHub/castle2.0/sig18_mini/Assets/FRL.XR/FRL/Tracking/Plugins/FlatBuffers/FlatBuffers.dll</HintPath>
+      <HintPath>C:/Users/FRL/Desktop/castle3.0/sig18_mini/Assets/FRL.XR/FRL/Tracking/Plugins/FlatBuffers/FlatBuffers.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor.Advertisements">
       <HintPath>C:/Users/FRL/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.ads@2.0.7/Editor/UnityEditor.Advertisements.dll</HintPath>

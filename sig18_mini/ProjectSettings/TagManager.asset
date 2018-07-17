@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Selected
   - Des
+  - Animal
   layers:
   - Default
   - TransparentFX

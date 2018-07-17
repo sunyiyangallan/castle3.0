@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FRL.IO;
 
-public class CreateCube : MonoBehaviour, IPointerTriggerPressDownHandler
-{
+public class CreateCube : MonoBehaviour, IPointerTriggerPressDownHandler {
     public GameObject prefab;
     private int selectedCount = 0;
     public XRControllerModule module;
@@ -44,6 +43,7 @@ public class CreateCube : MonoBehaviour, IPointerTriggerPressDownHandler
         */
 
         // this creates the line for the user to know what they are pointing at
+        /*
         if (module.xrEventData.currentRaycast != null)
         {
             GameObject myLine = new GameObject();
@@ -58,7 +58,7 @@ public class CreateCube : MonoBehaviour, IPointerTriggerPressDownHandler
             GameObject.Destroy(myLine, 0.03f);
         }
 
-
+        */
 
     }
 
@@ -78,25 +78,28 @@ public class CreateCube : MonoBehaviour, IPointerTriggerPressDownHandler
           Debug.Log(hit.transform.position);
           */
         Debug.Log(eventData.worldPosition);
-        GameObject obj = Instantiate(prefab, new Vector3(eventData.worldPosition.x, eventData.worldPosition.y, eventData.worldPosition.z), Quaternion.identity) as GameObject;
-        GameObject[] dess = GameObject.FindGameObjectsWithTag("Des"); //clear all the other gameobjects that's tagged "Des"
-        foreach (GameObject GO in dess)
-        {
-            GO.tag = "Untagged";
-           // GameObject.Destroy(GO);
+        if (module.xrEventData.currentRaycast != null) {
+            GameObject obj = Instantiate(prefab, new Vector3(eventData.worldPosition.x, eventData.worldPosition.y, eventData.worldPosition.z), Quaternion.identity) as GameObject;
+
+            GameObject[] dess = GameObject.FindGameObjectsWithTag("Des"); //clear all the other gameobjects that's tagged "Des"
+            foreach (GameObject GO in dess) {
+                GO.tag = "Untagged";
+                // GameObject.Destroy(GO);
+            }
+            obj.tag = "Des";
+            //detects the number of animals selected
+            GameObject[] sels = GameObject.FindGameObjectsWithTag("Selected");
+            foreach (GameObject GO in sels) {
+                selectedCount++;
+            }
+            //adjust the size of the target cylinder according to the number of selected animals
+            obj.transform.localScale += new Vector3(0.1f * selectedCount, 0, 0.1f * selectedCount);
+
         }
-        obj.tag = "Des";
-        //detects the number of animals selected
-        GameObject[] sels = GameObject.FindGameObjectsWithTag("Selected");
-        foreach (GameObject GO in sels) {
-            selectedCount++;
-        }
-        //adjust the size of the target cylinder according to the number of selected animals
-        obj.transform.localScale += new Vector3(0.1f * selectedCount, 0, 0.1f * selectedCount);
     }
 
 
-  }
+}
 
 
 

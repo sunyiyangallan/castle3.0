@@ -10,15 +10,14 @@ using FRL.IO;
 
 
 
-namespace LowPolyAnimalPack
-{
+namespace LowPolyAnimalPack {
     [RequireComponent(typeof(Animator)), RequireComponent(typeof(CharacterController))]
-    public class WanderScript : MonoBehaviour, IPointerTriggerPressDownHandler {
+    public class WanderScript : MonoBehaviour {
         private const float contingencyDistance = .1f;
 
         private bool wanderSwitch = false;
 
-       // public GameObject goal;
+        // public GameObject goal;
         public GameObject bear;
 
         [Header("Animation States"), Space(5)]
@@ -37,14 +36,11 @@ namespace LowPolyAnimalPack
 
         [SerializeField, Tooltip("How far away from it's origin this animal will wander by itself.")]
         private float wanderZone = 10f;
-        public float MaxDistance
-        {
-            get
-            {
+        public float MaxDistance {
+            get {
                 return wanderZone;
             }
-            set
-            {
+            set {
 #if UNITY_EDITOR
                 SceneView.RepaintAll();
 #endif
@@ -128,41 +124,41 @@ namespace LowPolyAnimalPack
         //public GameObject prefab;
         //public Transform location;
 
-    public void OnPointerTriggerPressDown(XREventData eventData) {
-      XRHand pointingHand = eventData.hand;
-      GameObject[] animals = GameObject.FindGameObjectsWithTag("Selected");
-            foreach (GameObject a in animals) {
-              selectedAnimalsCount++;
-            }
-             //<--- commented to allow for selecting multiple animals
+        /*
+public void OnPointerTriggerPressDown(XREventData eventData) {
+  XRHand pointingHand = eventData.hand;
+  GameObject[] animals = GameObject.FindGameObjectsWithTag("Selected");
+        foreach (GameObject a in animals) {
+          selectedAnimalsCount++;
+        }
+         //<--- commented to allow for selecting multiple animals
 
-            //if (pointingHand == XRHand.Left)
-       GameObject cb = GameObject.FindGameObjectWithTag("Des");
-       
-       
-       
-      if (gameObject.tag == "Untagged")
-      {
-        gameObject.tag = "Selected"; //allow an unselected animal to be selected
-        Debug.Log("hit");
-        cb.transform.localScale += new Vector3(0.1f, 0, 0.1f);
-        
-      } else {
-        gameObject.tag = "Untagged";
-        cb.transform.localScale -= new Vector3(0.1f, 0, 0.1f);
+        //if (pointingHand == XRHand.Left)
+   GameObject cb = GameObject.FindGameObjectWithTag("Des");
 
-        //Debug.Log("animal already selected"); //prevent duplicants
-       }
 
-     }
 
-    public void OnDrawGizmosSelected()
+  if (gameObject.tag == "Animal")
+  {
+    gameObject.tag = "Selected"; //allow an unselected animal to be selected
+    Debug.Log("hit");
+    cb.transform.localScale += new Vector3(0.1f, 0, 0.1f);
+
+  } else {
+    gameObject.tag = "Animal";
+    cb.transform.localScale -= new Vector3(0.1f, 0, 0.1f);
+
+    //Debug.Log("animal already selected"); //prevent duplicants
+   }
+
+ } */
+
+        public void OnDrawGizmosSelected()
         {
             if (!showGizmos)
                 return;
 
-            if (drawWanderRange)
-            {
+            if (drawWanderRange) {
                 // Draw circle of radius wander zone
                 Gizmos.color = distanceColor;
                 Gizmos.DrawWireSphere(origin == Vector3.zero ? transform.position : origin, wanderZone);
@@ -171,8 +167,7 @@ namespace LowPolyAnimalPack
                 Gizmos.DrawIcon(IconWander, "ico-wander", true);
             }
 
-            if (drawAwarenessRange)
-            {
+            if (drawAwarenessRange) {
                 //Draw circle radius for Awarness.
                 Gizmos.color = awarnessColor;
                 Gizmos.DrawWireSphere(transform.position, awareness);
@@ -182,8 +177,7 @@ namespace LowPolyAnimalPack
                 Gizmos.DrawIcon(IconAwareness, "ico-awareness", true);
             }
 
-            if (drawScentRange)
-            {
+            if (drawScentRange) {
                 //Draw circle radius for Scent.
                 Gizmos.color = scentColor;
                 Gizmos.DrawWireSphere(transform.position, scent);
@@ -196,18 +190,13 @@ namespace LowPolyAnimalPack
                 return;
 
             // Draw target position.
-            if (useNavMesh)
-            {
-                if (navMeshAgent.remainingDistance > 1f)
-                {
+            if (useNavMesh) {
+                if (navMeshAgent.remainingDistance > 1f) {
                     Gizmos.DrawSphere(navMeshAgent.destination + new Vector3(0f, 0.1f, 0f), 0.2f);
                     Gizmos.DrawLine(transform.position, navMeshAgent.destination);
                 }
-            }
-            else
-            {
-                if (targetLocation != Vector3.zero)
-                {
+            } else {
+                if (targetLocation != Vector3.zero) {
                     Gizmos.DrawSphere(targetLocation + new Vector3(0f, 0.1f, 0f), 0.2f);
                     Gizmos.DrawLine(transform.position, targetLocation);
                 }
@@ -216,15 +205,13 @@ namespace LowPolyAnimalPack
 
         private void Awake()
         {
-            if (idleStates.Length == 0 && movementStates.Length == 0)
-            {
+            if (idleStates.Length == 0 && movementStates.Length == 0) {
                 Debug.LogError(string.Format("{0} has no idle or movement states state.", gameObject.name));
                 enabled = false;
                 return;
             }
 
-            foreach (IdleState state in idleStates)
-            {
+            foreach (IdleState state in idleStates) {
                 totalIdleStateWeight += state.stateWeight;
             }
 
@@ -236,8 +223,7 @@ namespace LowPolyAnimalPack
             originalScent = scent;
             originalAgression = agression;
 
-            if (navMeshAgent)
-            {
+            if (navMeshAgent) {
                 useNavMesh = true;
                 navMeshAgent.stoppingDistance = contingencyDistance;
             }
@@ -249,39 +235,40 @@ namespace LowPolyAnimalPack
         {
             //InvokeRepeating("FlashLabel", 0, 0.5f);
 
-            if (AnimalManager.Instance.PeaceTime)
-            {
-                SetPeaceTime(true);
+            /* if (AnimalManager.Instance.PeaceTime)
+             {
+                 SetPeaceTime(true);
 
-            }
-
-      StartCoroutine(InitYield());
-
-      
-    }
+             }
+             */
+            StartCoroutine(InitYield());
 
 
-    public void Update() {
-      NavMeshAgent animal = GetComponent<NavMeshAgent>();
-      animal.speed = moveSpeed;
-      //GameObject obj = Instantiate(prefab, location.position, location.rotation) as GameObject;
-
-    }
+        }
 
 
-    /* void FlashLabel()
-     {
+        public void Update()
+        {
+            NavMeshAgent animal = GetComponent<NavMeshAgent>();
+            animal.speed = moveSpeed;
+            //GameObject obj = Instantiate(prefab, location.position, location.rotation) as GameObject;
 
-         if (gameObject.tag == "Selected")
+        }
+
+
+        /* void FlashLabel()
          {
-             if (gameObject.activeSelf)
-                 gameObject.SetActive(false);
-             else
-                 gameObject.SetActive(true);
-         }
-     }*/
 
-    private IEnumerator InitYield()
+             if (gameObject.tag == "Selected")
+             {
+                 if (gameObject.activeSelf)
+                     gameObject.SetActive(false);
+                 else
+                     gameObject.SetActive(true);
+             }
+         }*/
+
+        private IEnumerator InitYield()
         {
             yield return new WaitForSeconds((Random.Range(0, 200) / 100));
             DecideNextState(false, true);
@@ -292,31 +279,23 @@ namespace LowPolyAnimalPack
             attacking = false;
 
             // Look for a predator.
-            if (awareness > 0)
-            {
-                for (int i = 0; i < allAnimals.Count; i++)
-                {
-                    if (allAnimals[i].dead == true || allAnimals[i] == this || allAnimals[i].species == species || allAnimals[i].dominance <= dominance || allAnimals[i].stealthy)
-                    {
+            if (awareness > 0) {
+                for (int i = 0; i < allAnimals.Count; i++) {
+                    if (allAnimals[i].dead == true || allAnimals[i] == this || allAnimals[i].species == species || allAnimals[i].dominance <= dominance || allAnimals[i].stealthy) {
                         continue;
                     }
 
-                    if (Vector3.Distance(transform.position, allAnimals[i].transform.position) > awareness)
-                    {
+                    if (Vector3.Distance(transform.position, allAnimals[i].transform.position) > awareness) {
                         continue;
                     }
 
-                    if (useNavMesh)
-                    {
+                    if (useNavMesh) {
                         RunAwayFromAnimal(allAnimals[i]);
-                    }
-                    else
-                    {
+                    } else {
                         NonNavMeshRunAwayFromAnimal(allAnimals[i]);
                     }
 
-                    if (logChanges)
-                    {
+                    if (logChanges) {
                         Debug.Log(string.Format("{0}: Found predator ({1}), running away.", gameObject.name, allAnimals[i].gameObject.name));
                     }
 
@@ -325,33 +304,26 @@ namespace LowPolyAnimalPack
             }
 
             // Look for pray.
-            if (dominance > 0)
-            {
-                for (int i = 0; i < allAnimals.Count; i++)
-                {
-                    if (allAnimals[i].dead == true || allAnimals[i] == this || (allAnimals[i].species == species && !territorial) || allAnimals[i].dominance > dominance || allAnimals[i].stealthy)
-                    {
+            if (dominance > 0) {
+                for (int i = 0; i < allAnimals.Count; i++) {
+                    if (allAnimals[i].dead == true || allAnimals[i] == this || (allAnimals[i].species == species && !territorial) || allAnimals[i].dominance > dominance || allAnimals[i].stealthy) {
                         continue;
                     }
 
                     int p = System.Array.IndexOf(nonAgressiveTowards, allAnimals[i].species);
-                    if (p > -1)
-                    {
+                    if (p > -1) {
                         continue;
                     }
 
-                    if (Vector3.Distance(transform.position, allAnimals[i].transform.position) > scent)
-                    {
+                    if (Vector3.Distance(transform.position, allAnimals[i].transform.position) > scent) {
                         continue;
                     }
 
-                    if (Random.Range(0, 100) > agression)
-                    {
+                    if (Random.Range(0, 100) > agression) {
                         continue;
                     }
 
-                    if (logChanges)
-                    {
+                    if (logChanges) {
                         Debug.Log(string.Format("{0}: Found prey ({1}), chasing.", gameObject.name, allAnimals[i].gameObject.name));
                     }
 
@@ -360,19 +332,14 @@ namespace LowPolyAnimalPack
                 }
             }
 
-            if (wasIdle && movementStates.Length > 0)
-            {
-                if (logChanges)
-                {
+            if (wasIdle && movementStates.Length > 0) {
+                if (logChanges) {
                     Debug.Log(string.Format("{0}: Wandering.", gameObject.name));
                 }
                 BeginWanderState();
                 return;
-            }
-            else if (idleStates.Length > 0)
-            {
-                if (logChanges)
-                {
+            } else if (idleStates.Length > 0) {
+                if (logChanges) {
                     Debug.Log(string.Format("{0}: Idling.", gameObject.name));
                 }
                 BeginIdleState(firstState);
@@ -380,25 +347,19 @@ namespace LowPolyAnimalPack
             }
 
             // Backup selection.
-            if (idleStates.Length == 0)
-            {
+            if (idleStates.Length == 0) {
                 BeginWanderState();
-            }
-            else if (movementStates.Length == 0)
-            {
+            } else if (movementStates.Length == 0) {
                 BeginIdleState();
             }
         }
 
         private void BeginIdleState(bool firstState = false)
         {
-            if (!firstState)
-            {
+            if (!firstState) {
                 int randomValue = Random.Range(0, totalIdleStateWeight);
-                for (int i = 0; i < idleStates.Length; i++)
-                {
-                    if (randomValue < idleStates[i].stateWeight)
-                    {
+                for (int i = 0; i < idleStates.Length; i++) {
+                    if (randomValue < idleStates[i].stateWeight) {
                         currentState = i;
                         break;
                     }
@@ -407,14 +368,12 @@ namespace LowPolyAnimalPack
                 }
             }
 
-            if (idleStates.Length == 0)
-            {
+            if (idleStates.Length == 0) {
                 BeginWanderState();
                 return;
             }
 
-            if (!string.IsNullOrEmpty(idleStates[currentState].animationBool))
-            {
+            if (!string.IsNullOrEmpty(idleStates[currentState].animationBool)) {
                 animator.SetBool(idleStates[currentState].animationBool, true);
             }
 
@@ -431,8 +390,7 @@ namespace LowPolyAnimalPack
 
             yield return new WaitForSeconds(stateTime);
 
-            if (!string.IsNullOrEmpty(idleStates[currentState].animationBool))
-            {
+            if (!string.IsNullOrEmpty(idleStates[currentState].animationBool)) {
                 animator.SetBool(idleStates[currentState].animationBool, false);
             }
 
@@ -441,702 +399,592 @@ namespace LowPolyAnimalPack
 
         private void BeginWanderState()
         {
-   
-      // Vector3 target = RandonPointInRange();
 
-      /*
-            float dist = Vector3.Distance(goal.transform.position, bear.transform.position);
+            // Vector3 target = RandonPointInRange();
 
-            Debug.Log(destination);
-            if ( dist <= 0.15 )
-            {
+            /*
+                  float dist = Vector3.Distance(goal.transform.position, bear.transform.position);
+
+                  Debug.Log(destination);
+                  if ( dist <= 0.15 )
+                  {
+                      wanderSwitch = true;
+                } else {
+                      wanderSwitch = false;
+                  }
+                  */
+
+            GameObject cubegoal = GameObject.FindGameObjectWithTag("Des");
+            float dist = 0;
+            Vector3 target = new Vector3();
+            if (cubegoal != null) {
+                target = cubegoal.transform.position;
+                dist = Vector3.Distance(target, gameObject.transform.position);
+            } else {
+                dist = 1;
+            }
+
+
+            if (dist <= 0.15 || cubegoal == null) {
                 wanderSwitch = true;
-          } else {
+            } else {
                 wanderSwitch = false;
             }
-            */
-
-        GameObject cubegoal = GameObject.FindGameObjectWithTag("Des");
-        float dist = 0;
-        Vector3 target = new Vector3 ();
-        if (cubegoal != null) {
-          target = cubegoal.transform.position;
-          dist = Vector3.Distance(target, gameObject.transform.position);
-        } else {
-          dist = 1;
-        }
 
 
-        if (dist <= 0.15 || cubegoal == null) {
-           wanderSwitch = true;
-        } else {
-           wanderSwitch = false;
-        }
+            //bear moves to destination point only when the bear is selected and one game object with tag "Des"
+            //is selected
+            if (wanderSwitch == false && gameObject.tag == "Selected") {
+                target = cubegoal.transform.position;
+                Debug.Log(target);
+            } else {
+                target = RandonPointInRange();
+            }
 
 
-      //bear moves to destination point only when the bear is selected and one game object with tag "Des"
-      //is selected
-      if (wanderSwitch == false && gameObject.tag == "Selected")
-      {
-        target = cubegoal.transform.position;
-        Debug.Log(target);
-      }
-      else
-      {
-        target = RandonPointInRange();
-      }
-
-
-      int slowestMovementState = 0;
-            for (int i = 0; i < movementStates.Length; i++)
-            {
-                if (movementStates[i].moveSpeed < movementStates[slowestMovementState].moveSpeed)
-                {
+            int slowestMovementState = 0;
+            for (int i = 0; i < movementStates.Length; i++) {
+                if (movementStates[i].moveSpeed < movementStates[slowestMovementState].moveSpeed) {
                     slowestMovementState = i;
                 }
             }
             currentState = slowestMovementState;
 
-            if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-            {
+            if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
                 animator.SetBool(movementStates[currentState].animationBool, true);
             }
 
-            if (useNavMesh)
-            {
+            if (useNavMesh) {
                 StartCoroutine(MovementState(target));
-            }
-            else
-            {
+            } else {
                 StartCoroutine(NonNavMeshMovementState(target));
             }
         }
 
-    private IEnumerator MovementState(Vector3 target)
-    {
-      moving = true;
-
-      navMeshAgent.speed = movementStates[currentState].moveSpeed;
-      navMeshAgent.angularSpeed = movementStates[currentState].turnSpeed;
-      navMeshAgent.SetDestination (target);
-
-      float timeMoving = 0f;
-      while((navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance || timeMoving < 0.1f) && timeMoving < movementStates[currentState].maxStateTime)
-      {
-        timeMoving += Time.deltaTime;
-        yield return null;
-      }
-
-      navMeshAgent.SetDestination(transform.position);
-
-      if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-      {
-        animator.SetBool(movementStates[currentState].animationBool, false);
-      }
-
-      DecideNextState(false);
-    }
-
-    private IEnumerator NonNavMeshMovementState(Vector3 target)
-    {
-      moving = true;
-      targetLocation = target;
-      currentMoveSpeed = movementStates[currentState].moveSpeed;
-      currentTurnSpeed = movementStates[currentState].turnSpeed;
-
-      float walkTime = 0f;
-      float timeUntilAbortWalk = Vector3.Distance(transform.position, target) / movementStates[currentState].moveSpeed;
-
-      while (Vector3.Distance(transform.position, target) > contingencyDistance && walkTime < timeUntilAbortWalk)
-      {
-        characterController.SimpleMove(transform.TransformDirection(Vector3.forward) * movementStates[currentState].moveSpeed);
-
-        Vector3 relativePos = target - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * (currentTurnSpeed/10));
-        currentTurnSpeed += Time.deltaTime;
-
-        walkTime += Time.deltaTime;
-        yield return null;
-      }
-
-      targetLocation = Vector3.zero;
-
-      if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-      {
-        animator.SetBool(movementStates[currentState].animationBool, false);
-      }
-
-      DecideNextState(false);
-    }
-
-		private void RunAwayFromAnimal(WanderScript predator)
-    {
-      moving = true;
-
-      Quaternion startRotation = transform.rotation;
-      transform.rotation = Quaternion.LookRotation(transform.position - predator.transform.position);
-      Vector3 areaAwayFromPredator = transform.position + transform.forward * 5f;
-      NavMeshHit hit;
-      NavMesh.SamplePosition(areaAwayFromPredator, out hit, 5, 1 << NavMesh.GetAreaFromName("Walkable"));
-      Vector3 target = hit.position;
-      transform.rotation = startRotation;
-
-      if (constainedToWanderZone && Vector3.Distance(target, origin) > wanderZone)
-      {
-        target = RandonPointInRange();
-      }
-
-      int fastestMovementState = 0;
-      for (int i = 0; i < movementStates.Length; i++)
-      {
-        if (movementStates[i].moveSpeed > movementStates[fastestMovementState].moveSpeed)
+        private IEnumerator MovementState(Vector3 target)
         {
-          fastestMovementState = i;
-        }
-      }
-      currentState = fastestMovementState;
+            moving = true;
 
-      if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-      {
-        animator.SetBool(movementStates[currentState].animationBool, true);
-      }
+            navMeshAgent.speed = movementStates[currentState].moveSpeed;
+            navMeshAgent.angularSpeed = movementStates[currentState].turnSpeed;
+            navMeshAgent.SetDestination(target);
 
-      StartCoroutine(RunAwayState(target, predator));
-    }
+            float timeMoving = 0f;
+            while ((navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance || timeMoving < 0.1f) && timeMoving < movementStates[currentState].maxStateTime) {
+                timeMoving += Time.deltaTime;
+                yield return null;
+            }
 
-		private IEnumerator RunAwayState(Vector3 target, WanderScript predator)
-    {
-      navMeshAgent.speed = movementStates[currentState].moveSpeed;
-      navMeshAgent.angularSpeed = movementStates[currentState].turnSpeed;
-      navMeshAgent.SetDestination(target);
-
-      float timeMoving = 0f;
-      while ((navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance || timeMoving < 0.1f) && timeMoving < stamina)
-      {
-        timeMoving += Time.deltaTime;
-        yield return null;
-      }
-
-      navMeshAgent.SetDestination(transform.position);
-
-      if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-      {
-        animator.SetBool(movementStates[currentState].animationBool, false);
-      }
-
-      if (timeMoving > stamina || predator.dead || Vector3.Distance(transform.position, predator.transform.position) > awareness)
-      {
-        BeginIdleState();
-      }
-      else
-      {
-        RunAwayFromAnimal(predator);
-      }
-    }
-
-		private void NonNavMeshRunAwayFromAnimal(WanderScript predator)
-    {
-      moving = true;
-
-      Quaternion startRotation = transform.rotation;
-      transform.rotation = Quaternion.LookRotation(transform.position - predator.transform.position);
-      targetLocation = transform.position + transform.forward * 5f;
-      transform.rotation = startRotation;
-
-      if (constainedToWanderZone && Vector3.Distance(targetLocation, origin) > wanderZone)
-      {
-        targetLocation = RandonPointInRange();
-      }
-
-      int fastestMovementState = 0;
-      for (int i = 0; i < movementStates.Length; i++)
-      {
-        if (movementStates[i].moveSpeed > movementStates[fastestMovementState].moveSpeed)
-        {
-          fastestMovementState = i;
-        }
-      }
-      currentState = fastestMovementState;
-
-      if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-      {
-        animator.SetBool(movementStates[currentState].animationBool, true);
-      }
-
-      StartCoroutine(NonNavMeshRunAwayState(targetLocation, predator));
-    }
-
-		private IEnumerator NonNavMeshRunAwayState(Vector3 target, WanderScript predator)
-    {
-      currentTurnSpeed = movementStates[currentState].turnSpeed;
-
-      float walkTime = 0f;
-      float timeUntilAbortWalk = Vector3.Distance(transform.position, target) / movementStates[currentState].moveSpeed;
-
-      float currentStamina = stamina;
-
-      while (Vector3.Distance(transform.position, target) > contingencyDistance && walkTime < timeUntilAbortWalk && stamina > 0)
-      {
-        characterController.SimpleMove(transform.TransformDirection(Vector3.forward) * movementStates[currentState].moveSpeed);
-
-        Vector3 relativePos = target - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * (currentTurnSpeed / 10));
-        currentTurnSpeed += Time.deltaTime;
-
-        walkTime += Time.deltaTime;
-        stamina -= Time.deltaTime;
-        yield return null;
-      }
-
-      targetLocation = Vector3.zero;
-
-      if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-      {
-        animator.SetBool(movementStates[currentState].animationBool, false);
-      }
-
-      if (stamina <= 0|| predator.dead || Vector3.Distance(transform.position, predator.transform.position) > awareness)
-      {
-        BeginIdleState();
-      }
-      else
-      {
-        NonNavMeshRunAwayFromAnimal(predator);
-      }
-    }
-
-		private void ChaseAnimal(WanderScript prey)
-    {
-      Vector3 target = prey.transform.position;
-      prey.BeginChase(this);
-
-      int fastestMovementState = 0;
-      for (int i = 0; i < movementStates.Length; i++)
-      {
-        if (movementStates[i].moveSpeed > movementStates[fastestMovementState].moveSpeed)
-        {
-          fastestMovementState = i;
-        }
-      }
-      currentState = fastestMovementState;
-
-      if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-      {
-        animator.SetBool(movementStates[currentState].animationBool, true);
-      }
-
-      if (useNavMesh)
-      {
-        StartCoroutine(ChaseState(prey));
-      }
-      else
-      {
-        StartCoroutine(NonNavMeshChaseState(prey));
-      }
-    }
-
-		private IEnumerator ChaseState(WanderScript prey)
-    {
-      moving = true;
-
-      navMeshAgent.speed = movementStates[currentState].moveSpeed;
-      navMeshAgent.angularSpeed = movementStates[currentState].turnSpeed;
-      navMeshAgent.SetDestination(prey.transform.position);
-
-      float timeMoving = 0f;
-      bool gotAway = false;
-      while ((navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance || timeMoving < 0.1f) && timeMoving < stamina)
-      {
-        navMeshAgent.SetDestination(prey.transform.position);
-
-        timeMoving += Time.deltaTime;
-
-        if (Vector3.Distance(transform.position, prey.transform.position) < 2f)
-        {
-          if (logChanges)
-          {
-            Debug.Log(string.Format("{0}: Caught prey ({1})!", gameObject.name, prey.gameObject.name));
-          }
-
-          if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-          {
-            animator.SetBool(movementStates[currentState].animationBool, false);
-          }
-
-          AttackAnimal(prey);
-          yield break;
-        }
-
-        if (constainedToWanderZone && Vector3.Distance(transform.position, origin) > wanderZone)
-        {
-          gotAway = true;
-          navMeshAgent.SetDestination(transform.position);
-          break;
-        }
-
-        yield return null;
-      }
-
-      navMeshAgent.SetDestination(transform.position);
-
-      if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-      {
-        animator.SetBool(movementStates[currentState].animationBool, false);
-      }
-
-      if (timeMoving > stamina || prey.dead || Vector3.Distance(transform.position, prey.transform.position) > scent || gotAway)
-      {
-        BeginIdleState();
-      }
-      else
-      {
-        ChaseAnimal(prey);
-      }
-    }
-
-		private IEnumerator NonNavMeshChaseState(WanderScript prey)
-    {
-      moving = true;
-      targetLocation = prey.transform.position;
-      currentTurnSpeed = movementStates[currentState].turnSpeed;
-
-      float walkTime = 0f;
-      bool gotAway = false;
-      float timeUntilAbortWalk = Vector3.Distance(transform.position, targetLocation) / movementStates[currentState].moveSpeed;
-
-      float currentStamina = stamina;
-
-      while (Vector3.Distance(transform.position, targetLocation) > contingencyDistance && walkTime < timeUntilAbortWalk && stamina > 0)
-      {
-        characterController.SimpleMove(transform.TransformDirection(Vector3.forward) * movementStates[currentState].moveSpeed);
-        targetLocation = prey.transform.position;
-
-        Vector3 relativePos = targetLocation - transform.position;
-        Quaternion rotation = Quaternion.LookRotation(relativePos);
-        transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * (currentTurnSpeed / 10));
-        currentTurnSpeed += Time.deltaTime;
-
-        walkTime += Time.deltaTime;
-        stamina -= Time.deltaTime;
-
-        if (Vector3.Distance(transform.position, prey.transform.position) < 2f)
-        {
-          if (logChanges)
-          {
-            Debug.Log(string.Format("{0}: Caught prey ({1})!", gameObject.name, prey.gameObject.name));
-          }
-
-          if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-          {
-            animator.SetBool(movementStates[currentState].animationBool, false);
-          }
-
-          AttackAnimal(prey);
-          yield break;
-        }
-
-        if (constainedToWanderZone && Vector3.Distance(transform.position, origin) > wanderZone)
-        {
-          gotAway = true;
-          targetLocation = transform.position;
-          break;
-        }
-
-        yield return null;
-      }
-
-      targetLocation = Vector3.zero;
-
-      if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-      {
-        animator.SetBool(movementStates[currentState].animationBool, false);
-      }
-
-      if (stamina <= 0 || prey.dead || Vector3.Distance(transform.position, prey.transform.position) > scent || gotAway)
-      {
-        BeginIdleState();
-      }
-      else
-      {
-        ChaseAnimal(prey);
-      }
-    }
-
-		private void AttackAnimal(WanderScript target)
-    {
-      attacking = true;
-
-      if (logChanges)
-      {
-        Debug.Log(string.Format("{0}: Attacking {1}!", gameObject.name, target.gameObject.name));
-      }
-
-      if (useNavMesh)
-      {
-        navMeshAgent.SetDestination(transform.position);
-      }
-      else
-      {
-        targetLocation = transform.position;
-      }
-
-      if (attackingStates.Length > 0)
-      {
-        currentState = Random.Range(0, attackingStates.Length);
-
-        if (!string.IsNullOrEmpty(attackingStates[currentState].animationBool))
-        {
-          animator.SetBool(attackingStates[currentState].animationBool, true);
-        }
-      }
-
-      StartCoroutine(MakeAttack(target));
-    }
-
-		private IEnumerator MakeAttack(WanderScript target)
-    {
-      target.GetAttacked(this);
-
-      float timer = 0f;
-      while(!target.dead)
-      {
-        timer += Time.deltaTime;
-
-        if (timer > attackSpeed)
-        {
-          target.TakeDamage(power);
-          timer = 0f;
-        }
-
-        yield return null;
-      }
-
-      if (!string.IsNullOrEmpty(attackingStates[currentState].animationBool))
-      {
-        animator.SetBool(attackingStates[currentState].animationBool, false);
-      }
-
-      DecideNextState(false);
-    }
-
-		private void GetAttacked(WanderScript attacker)
-    {
-      if (attacking)
-      {
-        return;
-      }
-
-      if (logChanges)
-      {
-        Debug.Log(string.Format("{0}: Getting attacked by {1}!", gameObject.name, attacker.gameObject.name));
-      }
-      StopAllCoroutines();
-
-      StartCoroutine(TurnToLookAtTarget(attacker.transform));
-
-      if (agression > 0)
-      {
-        if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-        {
-          animator.SetBool(movementStates[currentState].animationBool, false);
-        }
-
-        AttackAnimal(attacker);
-      }
-      else
-      {
-        if (moving)
-        {
-          if (useNavMesh)
-          {
             navMeshAgent.SetDestination(transform.position);
-          }
-          else
-          {
-            targetLocation = transform.position;
-          }
 
-          if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-          {
-            animator.SetBool(movementStates[currentState].animationBool, false);
-          }
+            if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                animator.SetBool(movementStates[currentState].animationBool, false);
+            }
 
-          moving = false;
+            DecideNextState(false);
         }
-        else
+
+        private IEnumerator NonNavMeshMovementState(Vector3 target)
         {
+            moving = true;
+            targetLocation = target;
+            currentMoveSpeed = movementStates[currentState].moveSpeed;
+            currentTurnSpeed = movementStates[currentState].turnSpeed;
 
-          if (idleStates.Length > 0 && !string.IsNullOrEmpty(idleStates[currentState].animationBool))
-          {
-            animator.SetBool(idleStates[currentState].animationBool, false);
-          }
+            float walkTime = 0f;
+            float timeUntilAbortWalk = Vector3.Distance(transform.position, target) / movementStates[currentState].moveSpeed;
+
+            while (Vector3.Distance(transform.position, target) > contingencyDistance && walkTime < timeUntilAbortWalk) {
+                characterController.SimpleMove(transform.TransformDirection(Vector3.forward) * movementStates[currentState].moveSpeed);
+
+                Vector3 relativePos = target - transform.position;
+                Quaternion rotation = Quaternion.LookRotation(relativePos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * (currentTurnSpeed / 10));
+                currentTurnSpeed += Time.deltaTime;
+
+                walkTime += Time.deltaTime;
+                yield return null;
+            }
+
+            targetLocation = Vector3.zero;
+
+            if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                animator.SetBool(movementStates[currentState].animationBool, false);
+            }
+
+            DecideNextState(false);
         }
-      }
+
+        private void RunAwayFromAnimal(WanderScript predator)
+        {
+            moving = true;
+
+            Quaternion startRotation = transform.rotation;
+            transform.rotation = Quaternion.LookRotation(transform.position - predator.transform.position);
+            Vector3 areaAwayFromPredator = transform.position + transform.forward * 5f;
+            NavMeshHit hit;
+            NavMesh.SamplePosition(areaAwayFromPredator, out hit, 5, 1 << NavMesh.GetAreaFromName("Walkable"));
+            Vector3 target = hit.position;
+            transform.rotation = startRotation;
+
+            if (constainedToWanderZone && Vector3.Distance(target, origin) > wanderZone) {
+                target = RandonPointInRange();
+            }
+
+            int fastestMovementState = 0;
+            for (int i = 0; i < movementStates.Length; i++) {
+                if (movementStates[i].moveSpeed > movementStates[fastestMovementState].moveSpeed) {
+                    fastestMovementState = i;
+                }
+            }
+            currentState = fastestMovementState;
+
+            if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                animator.SetBool(movementStates[currentState].animationBool, true);
+            }
+
+            StartCoroutine(RunAwayState(target, predator));
+        }
+
+        private IEnumerator RunAwayState(Vector3 target, WanderScript predator)
+        {
+            navMeshAgent.speed = movementStates[currentState].moveSpeed;
+            navMeshAgent.angularSpeed = movementStates[currentState].turnSpeed;
+            navMeshAgent.SetDestination(target);
+
+            float timeMoving = 0f;
+            while ((navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance || timeMoving < 0.1f) && timeMoving < stamina) {
+                timeMoving += Time.deltaTime;
+                yield return null;
+            }
+
+            navMeshAgent.SetDestination(transform.position);
+
+            if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                animator.SetBool(movementStates[currentState].animationBool, false);
+            }
+
+            if (timeMoving > stamina || predator.dead || Vector3.Distance(transform.position, predator.transform.position) > awareness) {
+                BeginIdleState();
+            } else {
+                RunAwayFromAnimal(predator);
+            }
+        }
+
+        private void NonNavMeshRunAwayFromAnimal(WanderScript predator)
+        {
+            moving = true;
+
+            Quaternion startRotation = transform.rotation;
+            transform.rotation = Quaternion.LookRotation(transform.position - predator.transform.position);
+            targetLocation = transform.position + transform.forward * 5f;
+            transform.rotation = startRotation;
+
+            if (constainedToWanderZone && Vector3.Distance(targetLocation, origin) > wanderZone) {
+                targetLocation = RandonPointInRange();
+            }
+
+            int fastestMovementState = 0;
+            for (int i = 0; i < movementStates.Length; i++) {
+                if (movementStates[i].moveSpeed > movementStates[fastestMovementState].moveSpeed) {
+                    fastestMovementState = i;
+                }
+            }
+            currentState = fastestMovementState;
+
+            if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                animator.SetBool(movementStates[currentState].animationBool, true);
+            }
+
+            StartCoroutine(NonNavMeshRunAwayState(targetLocation, predator));
+        }
+
+        private IEnumerator NonNavMeshRunAwayState(Vector3 target, WanderScript predator)
+        {
+            currentTurnSpeed = movementStates[currentState].turnSpeed;
+
+            float walkTime = 0f;
+            float timeUntilAbortWalk = Vector3.Distance(transform.position, target) / movementStates[currentState].moveSpeed;
+
+            float currentStamina = stamina;
+
+            while (Vector3.Distance(transform.position, target) > contingencyDistance && walkTime < timeUntilAbortWalk && stamina > 0) {
+                characterController.SimpleMove(transform.TransformDirection(Vector3.forward) * movementStates[currentState].moveSpeed);
+
+                Vector3 relativePos = target - transform.position;
+                Quaternion rotation = Quaternion.LookRotation(relativePos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * (currentTurnSpeed / 10));
+                currentTurnSpeed += Time.deltaTime;
+
+                walkTime += Time.deltaTime;
+                stamina -= Time.deltaTime;
+                yield return null;
+            }
+
+            targetLocation = Vector3.zero;
+
+            if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                animator.SetBool(movementStates[currentState].animationBool, false);
+            }
+
+            if (stamina <= 0 || predator.dead || Vector3.Distance(transform.position, predator.transform.position) > awareness) {
+                BeginIdleState();
+            } else {
+                NonNavMeshRunAwayFromAnimal(predator);
+            }
+        }
+
+        private void ChaseAnimal(WanderScript prey)
+        {
+            Vector3 target = prey.transform.position;
+            prey.BeginChase(this);
+
+            int fastestMovementState = 0;
+            for (int i = 0; i < movementStates.Length; i++) {
+                if (movementStates[i].moveSpeed > movementStates[fastestMovementState].moveSpeed) {
+                    fastestMovementState = i;
+                }
+            }
+            currentState = fastestMovementState;
+
+            if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                animator.SetBool(movementStates[currentState].animationBool, true);
+            }
+
+            if (useNavMesh) {
+                StartCoroutine(ChaseState(prey));
+            } else {
+                StartCoroutine(NonNavMeshChaseState(prey));
+            }
+        }
+
+        private IEnumerator ChaseState(WanderScript prey)
+        {
+            moving = true;
+
+            navMeshAgent.speed = movementStates[currentState].moveSpeed;
+            navMeshAgent.angularSpeed = movementStates[currentState].turnSpeed;
+            navMeshAgent.SetDestination(prey.transform.position);
+
+            float timeMoving = 0f;
+            bool gotAway = false;
+            while ((navMeshAgent.remainingDistance > navMeshAgent.stoppingDistance || timeMoving < 0.1f) && timeMoving < stamina) {
+                navMeshAgent.SetDestination(prey.transform.position);
+
+                timeMoving += Time.deltaTime;
+
+                if (Vector3.Distance(transform.position, prey.transform.position) < 2f) {
+                    if (logChanges) {
+                        Debug.Log(string.Format("{0}: Caught prey ({1})!", gameObject.name, prey.gameObject.name));
+                    }
+
+                    if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                        animator.SetBool(movementStates[currentState].animationBool, false);
+                    }
+
+                    AttackAnimal(prey);
+                    yield break;
+                }
+
+                if (constainedToWanderZone && Vector3.Distance(transform.position, origin) > wanderZone) {
+                    gotAway = true;
+                    navMeshAgent.SetDestination(transform.position);
+                    break;
+                }
+
+                yield return null;
+            }
+
+            navMeshAgent.SetDestination(transform.position);
+
+            if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                animator.SetBool(movementStates[currentState].animationBool, false);
+            }
+
+            if (timeMoving > stamina || prey.dead || Vector3.Distance(transform.position, prey.transform.position) > scent || gotAway) {
+                BeginIdleState();
+            } else {
+                ChaseAnimal(prey);
+            }
+        }
+
+        private IEnumerator NonNavMeshChaseState(WanderScript prey)
+        {
+            moving = true;
+            targetLocation = prey.transform.position;
+            currentTurnSpeed = movementStates[currentState].turnSpeed;
+
+            float walkTime = 0f;
+            bool gotAway = false;
+            float timeUntilAbortWalk = Vector3.Distance(transform.position, targetLocation) / movementStates[currentState].moveSpeed;
+
+            float currentStamina = stamina;
+
+            while (Vector3.Distance(transform.position, targetLocation) > contingencyDistance && walkTime < timeUntilAbortWalk && stamina > 0) {
+                characterController.SimpleMove(transform.TransformDirection(Vector3.forward) * movementStates[currentState].moveSpeed);
+                targetLocation = prey.transform.position;
+
+                Vector3 relativePos = targetLocation - transform.position;
+                Quaternion rotation = Quaternion.LookRotation(relativePos);
+                transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * (currentTurnSpeed / 10));
+                currentTurnSpeed += Time.deltaTime;
+
+                walkTime += Time.deltaTime;
+                stamina -= Time.deltaTime;
+
+                if (Vector3.Distance(transform.position, prey.transform.position) < 2f) {
+                    if (logChanges) {
+                        Debug.Log(string.Format("{0}: Caught prey ({1})!", gameObject.name, prey.gameObject.name));
+                    }
+
+                    if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                        animator.SetBool(movementStates[currentState].animationBool, false);
+                    }
+
+                    AttackAnimal(prey);
+                    yield break;
+                }
+
+                if (constainedToWanderZone && Vector3.Distance(transform.position, origin) > wanderZone) {
+                    gotAway = true;
+                    targetLocation = transform.position;
+                    break;
+                }
+
+                yield return null;
+            }
+
+            targetLocation = Vector3.zero;
+
+            if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                animator.SetBool(movementStates[currentState].animationBool, false);
+            }
+
+            if (stamina <= 0 || prey.dead || Vector3.Distance(transform.position, prey.transform.position) > scent || gotAway) {
+                BeginIdleState();
+            } else {
+                ChaseAnimal(prey);
+            }
+        }
+
+        private void AttackAnimal(WanderScript target)
+        {
+            attacking = true;
+
+            if (logChanges) {
+                Debug.Log(string.Format("{0}: Attacking {1}!", gameObject.name, target.gameObject.name));
+            }
+
+            if (useNavMesh) {
+                navMeshAgent.SetDestination(transform.position);
+            } else {
+                targetLocation = transform.position;
+            }
+
+            if (attackingStates.Length > 0) {
+                currentState = Random.Range(0, attackingStates.Length);
+
+                if (!string.IsNullOrEmpty(attackingStates[currentState].animationBool)) {
+                    animator.SetBool(attackingStates[currentState].animationBool, true);
+                }
+            }
+
+            StartCoroutine(MakeAttack(target));
+        }
+
+        private IEnumerator MakeAttack(WanderScript target)
+        {
+            target.GetAttacked(this);
+
+            float timer = 0f;
+            while (!target.dead) {
+                timer += Time.deltaTime;
+
+                if (timer > attackSpeed) {
+                    target.TakeDamage(power);
+                    timer = 0f;
+                }
+
+                yield return null;
+            }
+
+            if (!string.IsNullOrEmpty(attackingStates[currentState].animationBool)) {
+                animator.SetBool(attackingStates[currentState].animationBool, false);
+            }
+
+            DecideNextState(false);
+        }
+
+        private void GetAttacked(WanderScript attacker)
+        {
+            if (attacking) {
+                return;
+            }
+
+            if (logChanges) {
+                Debug.Log(string.Format("{0}: Getting attacked by {1}!", gameObject.name, attacker.gameObject.name));
+            }
+            StopAllCoroutines();
+
+            StartCoroutine(TurnToLookAtTarget(attacker.transform));
+
+            if (agression > 0) {
+                if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                    animator.SetBool(movementStates[currentState].animationBool, false);
+                }
+
+                AttackAnimal(attacker);
+            } else {
+                if (moving) {
+                    if (useNavMesh) {
+                        navMeshAgent.SetDestination(transform.position);
+                    } else {
+                        targetLocation = transform.position;
+                    }
+
+                    if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                        animator.SetBool(movementStates[currentState].animationBool, false);
+                    }
+
+                    moving = false;
+                } else {
+
+                    if (idleStates.Length > 0 && !string.IsNullOrEmpty(idleStates[currentState].animationBool)) {
+                        animator.SetBool(idleStates[currentState].animationBool, false);
+                    }
+                }
+            }
+        }
+
+        private void TakeDamage(float damage)
+        {
+            toughness -= damage;
+
+            if (toughness <= 0) {
+                Die();
+            }
+        }
+
+        public void Die()
+        {
+            if (logChanges) {
+                Debug.Log(string.Format("{0}: Died!", gameObject.name));
+            }
+
+            StopAllCoroutines();
+            dead = true;
+
+
+            if (useNavMesh) {
+                navMeshAgent.SetDestination(transform.position);
+            } else {
+                targetLocation = transform.position;
+            }
+
+            foreach (AnimalState state in idleStates) {
+                if (!string.IsNullOrEmpty(state.animationBool)) {
+                    animator.SetBool(state.animationBool, false);
+                }
+            }
+
+            foreach (AnimalState state in movementStates) {
+                if (!string.IsNullOrEmpty(state.animationBool)) {
+                    animator.SetBool(state.animationBool, false);
+                }
+            }
+
+            foreach (AnimalState state in attackingStates) {
+                if (!string.IsNullOrEmpty(state.animationBool)) {
+                    animator.SetBool(state.animationBool, false);
+                }
+            }
+
+            if (deathStates.Length > 0) {
+                currentState = Random.Range(0, deathStates.Length);
+
+                if (!string.IsNullOrEmpty(deathStates[currentState].animationBool)) {
+                    animator.SetBool(deathStates[currentState].animationBool, true);
+                }
+            } else {
+                foreach (Transform child in transform) {
+                    SkinnedMeshRenderer renderer = child.GetComponent<SkinnedMeshRenderer>();
+                    if (renderer) {
+                        renderer.enabled = false;
+                    }
+                }
+            }
+        }
+
+        public void SetPeaceTime(bool peace)
+        {
+            if (peace) {
+                dominance = 0;
+                scent = 0f;
+                agression = 0f;
+            } else {
+                dominance = originalDominance;
+                scent = originalScent;
+                agression = originalAgression;
+            }
+        }
+
+        private Vector3 RandonPointInRange()
+        {
+            Vector3 randomPoint = origin + Random.insideUnitSphere * wanderZone;
+            return new Vector3(randomPoint.x, transform.position.y, randomPoint.z);
+        }
+
+        private IEnumerator TurnToLookAtTarget(Transform target)
+        {
+            while (true) {
+                Vector3 direction = target.position - transform.position;
+
+                if (Vector3.Angle(direction, transform.forward) < 1f) {
+                    break;
+                }
+
+                float step = 2f * Time.deltaTime;
+                Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, step, 0.0f);
+                transform.rotation = Quaternion.LookRotation(newDirection);
+                yield return null;
+            }
+        }
+
+        private void BeginChase(WanderScript chasingAnimal)
+        {
+            if (attacking) {
+                return;
+            }
+
+            StartCoroutine(ChaseCheck(chasingAnimal));
+        }
+
+        private IEnumerator ChaseCheck(WanderScript chasingAnimal)
+        {
+            while (Vector3.Distance(transform.position, chasingAnimal.transform.position) > awareness) {
+                yield return new WaitForSeconds(0.5f);
+            }
+
+            StopAllCoroutines();
+            if (moving) {
+                if (useNavMesh) {
+                    navMeshAgent.SetDestination(transform.position);
+                } else {
+                    targetLocation = transform.position;
+                }
+
+                if (!string.IsNullOrEmpty(movementStates[currentState].animationBool)) {
+                    animator.SetBool(movementStates[currentState].animationBool, false);
+                }
+
+                moving = false;
+            } else {
+                if (idleStates.Length > 0 && !string.IsNullOrEmpty(idleStates[currentState].animationBool)) {
+                    animator.SetBool(idleStates[currentState].animationBool, false);
+                }
+            }
+
+            DecideNextState(false);
+        }
     }
-
-    private void TakeDamage(float damage)
-    {
-      toughness -= damage;
-
-      if (toughness <= 0)
-      {
-        Die();
-      }
-    }
-
-    public void Die()
-    {
-      if (logChanges)
-      {
-        Debug.Log(string.Format("{0}: Died!", gameObject.name));
-      }
-
-      StopAllCoroutines();
-      dead = true;
-	  
-
-      if (useNavMesh)
-      {
-        navMeshAgent.SetDestination(transform.position);
-      }
-      else
-      {
-        targetLocation = transform.position;
-      }
-
-      foreach (AnimalState state in idleStates)
-      {
-        if (!string.IsNullOrEmpty(state.animationBool))
-        {
-          animator.SetBool(state.animationBool, false);
-        }
-      }
-
-      foreach (AnimalState state in movementStates)
-      {
-        if (!string.IsNullOrEmpty(state.animationBool))
-        {
-          animator.SetBool(state.animationBool, false);
-        }
-      }
-
-      foreach (AnimalState state in attackingStates)
-      {
-        if (!string.IsNullOrEmpty(state.animationBool))
-        {
-          animator.SetBool(state.animationBool, false);
-        }
-      }
-
-      if (deathStates.Length > 0)
-      {
-        currentState = Random.Range(0, deathStates.Length);
-
-        if (!string.IsNullOrEmpty(deathStates[currentState].animationBool))
-        {
-          animator.SetBool(deathStates[currentState].animationBool, true);
-        }
-      }
-      else
-      {
-        foreach (Transform child in transform)
-        {
-          SkinnedMeshRenderer renderer = child.GetComponent<SkinnedMeshRenderer>();
-          if (renderer)
-          {
-            renderer.enabled = false;
-          }
-        }
-      }
-    }
-
-    public void SetPeaceTime(bool peace)
-    {
-      if (peace)
-      {
-        dominance = 0;
-        scent = 0f;
-        agression = 0f;
-      }
-      else
-      {
-        dominance = originalDominance;
-        scent = originalScent;
-        agression = originalAgression;
-      }
-    }
-
-    private Vector3 RandonPointInRange()
-    {
-      Vector3 randomPoint = origin + Random.insideUnitSphere * wanderZone;
-      return new Vector3(randomPoint.x, transform.position.y, randomPoint.z);
-    }   
-    
-    private IEnumerator TurnToLookAtTarget(Transform target)
-    {
-      while (true)
-      {
-        Vector3 direction = target.position - transform.position;
-
-        if (Vector3.Angle(direction, transform.forward) < 1f)
-        {
-          break;
-        }
-
-        float step = 2f * Time.deltaTime;
-        Vector3 newDirection = Vector3.RotateTowards(transform.forward, direction, step, 0.0f);
-        transform.rotation = Quaternion.LookRotation(newDirection);
-        yield return null;
-      }
-    }
-
-		private void BeginChase(WanderScript chasingAnimal)
-    {
-      if(attacking)
-      {
-        return;
-      }
-
-      StartCoroutine(ChaseCheck(chasingAnimal));
-    }
-
-		private IEnumerator ChaseCheck(WanderScript chasingAnimal)
-    {
-      while(Vector3.Distance(transform.position, chasingAnimal.transform.position) > awareness)
-      {
-        yield return new WaitForSeconds(0.5f);
-      }
-
-      StopAllCoroutines();
-      if (moving)
-      {
-        if (useNavMesh)
-        {
-          navMeshAgent.SetDestination(transform.position);
-        }
-        else
-        {
-          targetLocation = transform.position;
-        }
-
-        if (!string.IsNullOrEmpty(movementStates[currentState].animationBool))
-        {
-          animator.SetBool(movementStates[currentState].animationBool, false);
-        }
-
-        moving = false;
-      }
-      else
-      {
-        if (idleStates.Length > 0 && !string.IsNullOrEmpty(idleStates[currentState].animationBool))
-        {
-          animator.SetBool(idleStates[currentState].animationBool, false);
-        }
-      }
-
-      DecideNextState(false);
-    }
-  }
 }
