@@ -8136,7 +8136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01897ae0afb46794d88a3dc2d9386348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bear: {fileID: 0}
+  bear: {fileID: 1075236062}
   idleStates:
   - stateName: 'Nothing '
     animationBool: 
@@ -15264,12 +15264,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01897ae0afb46794d88a3dc2d9386348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bear: {fileID: 0}
+  bear: {fileID: 1843843262}
   idleStates: []
   movementStates: []
   attackingStates: []
   deathStates: []
-  species: NA
+  species: Giraffe
   wanderZone: 4
   dominance: 0
   awareness: 12
@@ -15702,6 +15702,7 @@ GameObject:
   - component: {fileID: 1878933614}
   - component: {fileID: 1878933616}
   - component: {fileID: 1878933615}
+  - component: {fileID: 1878933617}
   m_Layer: 0
   m_Name: Bear
   m_TagString: Animal
@@ -15717,7 +15718,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1878933605}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -56.5361, y: -17.999, z: 88.76157}
+  m_LocalPosition: {x: -56.5361, y: -17.977, z: 88.76157}
   m_LocalScale: {x: 0.08, y: 0.08, z: 0.08}
   m_Children:
   - {fileID: 1271652012}
@@ -15737,26 +15738,46 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01897ae0afb46794d88a3dc2d9386348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bear: {fileID: 0}
-  idleStates: []
-  movementStates: []
+  bear: {fileID: 1878933605}
+  idleStates:
+  - stateName: 
+    animationBool: 
+    minStateTime: 0
+    maxStateTime: 0
+    stateWeight: 0
+  - stateName: 
+    animationBool: 
+    minStateTime: 0
+    maxStateTime: 0
+    stateWeight: 0
+  movementStates:
+  - stateName: 
+    animationBool: 
+    maxStateTime: 0
+    moveSpeed: 0
+    turnSpeed: 0
+  - stateName: 
+    animationBool: 
+    maxStateTime: 0
+    moveSpeed: 0
+    turnSpeed: 0
   attackingStates: []
   deathStates: []
-  species: NA
+  species: Bear
   wanderZone: 4
   dominance: 0
   awareness: 12
   scent: 0
-  stamina: 15
-  power: 5
-  toughness: 12
+  stamina: 10
+  power: 10
+  toughness: 100
   agression: 0
   attackSpeed: 0.5
   territorial: 0
   stealthy: 0
   constainedToWanderZone: 0
   nonAgressiveTowards: []
-  logChanges: 0
+  logChanges: 1
   showGizmos: 1
   drawWanderRange: 1
   drawScentRange: 1
@@ -15909,8 +15930,8 @@ CharacterController:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Height: 2
-  m_Radius: 1.06
+  m_Height: 0.01
+  m_Radius: 0.053
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -15987,6 +16008,17 @@ MonoBehaviour:
   bindToModule: 0
   positionOffset: {x: 0, y: 0, z: 0}
   rotationOffset: {x: 0, y: 0, z: 0}
+--- !u!114 &1878933617
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1878933605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5c2ca62b15bde4e9d2daad8f4e82c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1879488212
 GameObject:
   m_ObjectHideFlags: 0
