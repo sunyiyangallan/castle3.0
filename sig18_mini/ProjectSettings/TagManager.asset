@@ -4,9 +4,9 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - Selected
-  - Des
   - Animal
+  - Des
+  - Selected
   layers:
   - Default
   - TransparentFX

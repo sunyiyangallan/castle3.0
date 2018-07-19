@@ -61,9 +61,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\FRL.XR\FRL\XR\Editor\InputManagerUtility.cs" />
-    <Compile Include="Assets\FRL.XR\FRL\XR\Editor\XRDeviceEditor.cs" />
-    <Compile Include="Assets\FRL.XR\FRL\XR\Editor\XRManagerEditor.cs" />
+    <Compile Include="Assets\FRL.XR\FRL.XR-master\FRL\XR\Editor\InputManagerUtility.cs" />
+    <Compile Include="Assets\FRL.XR\FRL.XR-master\FRL\XR\Editor\XRDeviceEditor.cs" />
+    <Compile Include="Assets\FRL.XR\FRL.XR-master\FRL\XR\Editor\XRManagerEditor.cs" />
     <Compile Include="Assets\Low Poly Animated Animals\- Scripts\AnimalScripts\Editor\AnimalManagerEditor.cs" />
     <Compile Include="Assets\Photon Unity Networking\Demos\DemoHub\Editor\PunStartup.cs" />
     <Compile Include="Assets\Photon Unity Networking\Editor\PhotonNetwork\AccountService.cs" />
@@ -327,7 +327,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.1.5f1/Editor/Data/PlaybackEngines/windowsstandalonesupport/UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="FlatBuffers">
-      <HintPath>C:/Users/FRL/Desktop/castle3.0/sig18_mini/Assets/FRL.XR/FRL/Tracking/Plugins/FlatBuffers/FlatBuffers.dll</HintPath>
+      <HintPath>C:/Users/FRL/Desktop/castle3.0/sig18_mini/Assets/FRL.XR/FRL.XR-master/FRL/Tracking/Plugins/FlatBuffers/FlatBuffers.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json">
       <HintPath>C:/Users/FRL/Desktop/castle3.0/sig18_mini/Assets/Photon Unity Networking/Editor/PhotonNetwork/Newtonsoft.Json.dll</HintPath>

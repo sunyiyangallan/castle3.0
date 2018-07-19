@@ -11,26 +11,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f3758f8f58fdef43803eb9be1df0608, type: 3}
   m_Name: PhotonServerSettings
   m_EditorClassIdentifier: 
-  AppID: 1e32347f-ac38-48a3-8256-b568dbfd1961
-  VoiceAppID: 
+  AppID: 26b531c5-bd5c-477d-b963-37eb02aa15aa
+  VoiceAppID: c46cbbe5-1275-415b-8d4f-3916afa978af
   ChatAppID: 
   HostType: 1
-  PreferredRegion: 0
+  PreferredRegion: 1
   EnabledRegions: -1
   Protocol: 0
   ServerAddress: 
   ServerPort: 5055
   VoiceServerPort: 5055
-  JoinLobby: 0
-  EnableLobbyStatistics: 0
+  JoinLobby: 1
+  EnableLobbyStatistics: 1
   PunLogging: 0
   NetworkLogging: 1
   RunInBackground: 1
   RpcList:
+  - AvatarSpoken
+  - AvatarTeleport
   - Chat
   - ColorRpc
   - DestroyRpc
   - DoJump
+  - EndSync
   - Flash
   - InstantiateRpc
   - Marco
@@ -41,5 +44,62 @@ MonoBehaviour:
   - PunRespawn
   - RequestForPickupItems
   - RequestForPickupTimes
+  - SpawnOnNetwork
+  - StartSync
   - TaggedPlayer
+  - Grab
+  - Release
+  - Parent
+  - Unparent
+  - AvatarTryPairingObjects
+  - AvatarTryPairingObject
+  - AvatarTryRemovingObject
+  - AvatarStartSyncronization
+  - AvatarStopSyncronization
+  - SendMatchInfo
+  - AnimateBackToOriginal
+  - AnimateToSurface
+  - HighLight
+  - EndHighlight
+  - StartHighlight
+  - StartSynchronization
+  - StopSynchronization
+  - EndSpawn
+  - StartSpawn
+  - AttachPlayerToWorld
+  - SpinGrab
+  - SpinRelease
+  - DiveWithPlayer
+  - ManipulateWithPlayer
+  - Expand
+  - Retract
+  - SaveContainerTransformation
+  - FindAndGrab
+  - SwitchHoldingContainer
+  - SetIsParallelTo
+  - AddCollider
+  - AddToContainedObjects
+  - ClearContainedObjects
+  - RemoveFromContainedObjects
+  - Ping
+  - TurnOnViewCone
+  - AddToGhostObjects
+  - ClearGhostObjects
+  - RemoveFromGhostObjects
+  - FinishTracking
+  - TrackingStart
+  - FinishUpdating
+  - SwitchHoldingParallelContainer
+  - AddToContainerCommentedObject
+  - ClearContainerCommentedObject
+  - RemoveFromContainerCommentedObject
+  - MatchProxiesWithComments
+  - SetMainProjection
+  - AddNewParallelContainerLayout
+  - CycleHoldingParallelContainer
+  - FadeInOut
+  - SetImplicitCreated
+  - SetParallelAvatarPortal
+  - SetSpawnFromContainer
+  - SetTrailEndAvatar
   DisableAutoOpenWizard: 1

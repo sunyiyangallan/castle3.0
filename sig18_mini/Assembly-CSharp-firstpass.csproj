@@ -266,7 +266,7 @@
       <HintPath>C:/Program Files/Unity/Hub/Editor/2018.1.5f1/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
     <Reference Include="FlatBuffers">
-      <HintPath>C:/Users/FRL/Desktop/castle3.0/sig18_mini/Assets/FRL.XR/FRL/Tracking/Plugins/FlatBuffers/FlatBuffers.dll</HintPath>
+      <HintPath>C:/Users/FRL/Desktop/castle3.0/sig18_mini/Assets/FRL.XR/FRL.XR-master/FRL/Tracking/Plugins/FlatBuffers/FlatBuffers.dll</HintPath>
     </Reference>
     <Reference Include="Photon3Unity3D">
       <HintPath>C:/Users/FRL/Desktop/castle3.0/sig18_mini/Assets/Plugins/Photon3Unity3D.dll</HintPath>
