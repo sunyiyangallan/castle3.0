@@ -779,6 +779,7 @@ GameObject:
   - component: {fileID: 124047118}
   - component: {fileID: 124047121}
   - component: {fileID: 124047120}
+  - component: {fileID: 124047122}
   m_Layer: 0
   m_Name: Snake
   m_TagString: Animal
@@ -1167,6 +1168,17 @@ MonoBehaviour:
   instantiationId: 10
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &124047122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 124047108}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5c2ca62b15bde4e9d2daad8f4e82c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &124423965
 Prefab:
   m_ObjectHideFlags: 0
@@ -8940,6 +8952,17 @@ MonoBehaviour:
   instantiationId: 3
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &1075236068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1075236062}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5c2ca62b15bde4e9d2daad8f4e82c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1075236069 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4819606783095600, guid: 3a9b422ae305e3b49aadf8ece0bfa915,
@@ -9255,6 +9278,17 @@ MonoBehaviour:
   instantiationId: 7
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &1091815290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1091815285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5c2ca62b15bde4e9d2daad8f4e82c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &1091815294
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11311,6 +11345,17 @@ MonoBehaviour:
   instantiationId: 5
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &1314487561
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1314487556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5c2ca62b15bde4e9d2daad8f4e82c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &1314487562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13137,6 +13182,7 @@ GameObject:
   - component: {fileID: 1523018597}
   - component: {fileID: 1523018600}
   - component: {fileID: 1523018599}
+  - component: {fileID: 1523018601}
   m_Layer: 0
   m_Name: Penguin
   m_TagString: Animal
@@ -13525,6 +13571,17 @@ MonoBehaviour:
   instantiationId: 6
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &1523018601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1523018587}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5c2ca62b15bde4e9d2daad8f4e82c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1526745041
 Prefab:
   m_ObjectHideFlags: 0
@@ -15326,6 +15383,17 @@ MonoBehaviour:
   instantiationId: 4
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &1710746872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1710746867}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5c2ca62b15bde4e9d2daad8f4e82c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!65 &1710746875
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15591,6 +15659,7 @@ GameObject:
   - component: {fileID: 1721721269}
   - component: {fileID: 1721721272}
   - component: {fileID: 1721721271}
+  - component: {fileID: 1721721273}
   m_Layer: 0
   m_Name: Elephant
   m_TagString: Animal
@@ -15979,6 +16048,17 @@ MonoBehaviour:
   instantiationId: 9
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &1721721273
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1721721259}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5c2ca62b15bde4e9d2daad8f4e82c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1733482468
 GameObject:
   m_ObjectHideFlags: 0
@@ -16864,13 +16944,14 @@ GameObject:
   - component: {fileID: 1843843272}
   - component: {fileID: 1843843275}
   - component: {fileID: 1843843274}
+  - component: {fileID: 1843843276}
   m_Layer: 0
   m_Name: Giraffe
   m_TagString: Animal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1843843263
 Transform:
   m_ObjectHideFlags: 0
@@ -17252,6 +17333,17 @@ MonoBehaviour:
   instantiationId: 2
   currentMasterID: -1
   isRuntimeInstantiated: 0
+--- !u!114 &1843843276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1843843262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9d5c2ca62b15bde4e9d2daad8f4e82c6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1854502234 stripped
 Transform:
   m_PrefabParentObject: {fileID: 456650, guid: ede30dc43c4a9654e8660daec3e8acda, type: 2}
