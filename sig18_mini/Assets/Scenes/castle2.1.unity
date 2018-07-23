@@ -6245,7 +6245,7 @@ GameObject:
   - component: {fileID: 751923162}
   m_Layer: 5
   m_Name: GrabButton
-  m_TagString: Untagged
+  m_TagString: button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -16239,7 +16239,7 @@ GameObject:
   - component: {fileID: 1764728643}
   m_Layer: 5
   m_Name: SelectButton
-  m_TagString: Untagged
+  m_TagString: button
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
