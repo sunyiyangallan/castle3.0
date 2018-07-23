@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using FRL.IO;
-
+using UnityEngine.UI;
 
 public class SelectAnimal : MonoBehaviour, IPointerTriggerPressDownHandler, IPointerTriggerPressUpHandler {
 
@@ -23,10 +23,15 @@ public class SelectAnimal : MonoBehaviour, IPointerTriggerPressDownHandler, IPoi
             g.GetComponent<SelectScript>().enabled = true;
             //g.GetComponent<CreateCube>().enabled = true;
         }
-        GameObject terrain = GameObject.FindGameObjectWithTag("Terrain");
-        terrain.GetComponent<CreateCube>().enabled = true;
-
-        Debug.Log("Select00");
+        Debug.Log("Passed loop");
+       Debug.Log(Canvas.FindObjectsOfType<Button>()[1]);
+        //terrain.GetComponent<CreateCube>().enabled = true;
+        foreach (Button b in Canvas.FindObjectsOfType<Button>())
+        {
+            b.GetComponent<Image>().color = Color.white;
+       }
+        GetComponent<Image>().color = Color.red;
+        Debug.Log("terrain");
     }
 
     public void OnPointerTriggerPressUp(XREventData eventData)
