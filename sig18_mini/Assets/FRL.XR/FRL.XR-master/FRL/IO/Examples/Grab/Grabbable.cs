@@ -34,7 +34,7 @@ public class Grabbable : MonoBehaviour, IGlobalTriggerPressSetHandler, IPointerT
     collider = this.GetComponent<Collider>();
     rbody = this.GetComponent<Rigidbody>();
     view = this.GetComponent<PhotonView>();
-    view.ownershipTransfer = OwnershipOption.Takeover;
+
     }
 
 
@@ -109,6 +109,7 @@ public class Grabbable : MonoBehaviour, IGlobalTriggerPressSetHandler, IPointerT
       //Check for a GlobalGrabber if this object should expect one.
       if (!expectGrabber || (expectGrabber && eventData.module.GetComponent<Grabber>() != null
         && eventData.module.GetComponent<Grabber>().isActiveAndEnabled)) {
+                view.TransferOwnership(PhotonNetwork.player.ID);
         Grab(eventData.module);
       }
     }

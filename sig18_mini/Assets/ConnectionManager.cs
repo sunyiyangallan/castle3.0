@@ -36,7 +36,7 @@ public class ConnectionManager : MonoBehaviour {
 
   void OnJoinedLobby() {
     Debug.Log("Joined Lobby. Joining room...");
-    RoomOptions roomOptions = new RoomOptions { IsVisible = false, MaxPlayers = 4, CleanupCacheOnLeave = false };
+    RoomOptions roomOptions = new RoomOptions { IsVisible = false, MaxPlayers = 4, CleanupCacheOnLeave = false, };
     string roomName = photonRoomOverride.Equals("") ? photonRoom : photonRoomOverride;
     PhotonNetwork.JoinOrCreateRoom(roomName, roomOptions, TypedLobby.Default);
   }
