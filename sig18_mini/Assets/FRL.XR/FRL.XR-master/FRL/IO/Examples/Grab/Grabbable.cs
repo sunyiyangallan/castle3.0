@@ -19,6 +19,7 @@ public class Grabbable : MonoBehaviour, IGlobalTriggerPressSetHandler, IPointerT
   
   private new Collider collider;
   private Rigidbody rbody;
+  private PhotonView view;
 
   private Vector3 offset = Vector3.zero;
   private Quaternion rotOffset = Quaternion.identity;
@@ -32,7 +33,9 @@ public class Grabbable : MonoBehaviour, IGlobalTriggerPressSetHandler, IPointerT
     //Get the Collider component on this gameObject.
     collider = this.GetComponent<Collider>();
     rbody = this.GetComponent<Rigidbody>();
-  }
+    view = this.GetComponent<PhotonView>();
+    view.ownershipTransfer = OwnershipOption.Takeover;
+    }
 
 
   void OnDisable() {
