@@ -34,7 +34,7 @@ public class GrabAnimal : MonoBehaviour, IPointerTriggerPressDownHandler, IPoint
         //change the cube with tag des to unselected so that it won't be shown in grab mode
         //GameObject descube = GameObject.FindGameObjectWithTag("Des");
         //descube.tag = "Untagged";
-        objectRenderer = GetComponent<Renderer>();
+       // objectRenderer = GetComponent<Renderer>();
         Debug.Log("Grab");
         foreach (Button b in Canvas.FindObjectsOfType<Button>())
         {

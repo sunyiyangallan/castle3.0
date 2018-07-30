@@ -6478,6 +6478,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 751923167}
   - {fileID: 751923164}
+  - {fileID: 751923162}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 20
   instantiationId: 20
@@ -16567,6 +16568,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 1764728648}
   - {fileID: 1764728645}
+  - {fileID: 1764728643}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 8
   instantiationId: 8
