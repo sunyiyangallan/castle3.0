@@ -4,7 +4,7 @@ using UnityEngine;
 using FRL.IO;
 using UnityEngine.UI;
 
-public class GrabAnimal : MonoBehaviour, IPointerTriggerPressDownHandler, IPointerTriggerPressUpHandler {
+public class GrabAnimal : MonoBehaviour, IPointerTriggerPressDownHandler, IPointerTriggerPressUpHandler, IPunObservable {
 
     Renderer objectRenderer;
 
@@ -34,19 +34,32 @@ public class GrabAnimal : MonoBehaviour, IPointerTriggerPressDownHandler, IPoint
         //change the cube with tag des to unselected so that it won't be shown in grab mode
         //GameObject descube = GameObject.FindGameObjectWithTag("Des");
         //descube.tag = "Untagged";
-        objectRenderer = GetComponent<Renderer>();
+        /*objectRenderer = GetComponent<Renderer>();
         Debug.Log("Grab");
         foreach (Button b in Canvas.FindObjectsOfType<Button>())
         {
             b.GetComponent<Image>().color = Color.white;
         }
         GetComponent<Image>().color = Color.red;
+        */
+        
         
     }
 
     public void OnPointerTriggerPressUp(XREventData eventData)
     {
         //GetComponent<Renderer>().material.color = Color.black;
+    }
+
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
+        objectRenderer = GetComponent<Renderer>();
+        
+        foreach (Button b in Canvas.FindObjectsOfType<Button>())
+        {
+            b.GetComponent<Image>().color = Color.white;
+        }
+        GetComponent<Image>().color = Color.red;
     }
 
     // Use this for initialization
@@ -60,4 +73,6 @@ public class GrabAnimal : MonoBehaviour, IPointerTriggerPressDownHandler, IPoint
     {
 
     }
+
+
 }
