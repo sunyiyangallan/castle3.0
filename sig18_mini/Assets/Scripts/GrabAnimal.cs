@@ -41,7 +41,7 @@ public class GrabAnimal : MonoBehaviour, IPointerTriggerPressDownHandler, IPoint
             b.GetComponent<Image>().color = Color.white;
         }
         GetComponent<Image>().color = Color.red;
-        Debug.Log(eventData.GetType());
+        
     }
 
     public void OnPointerTriggerPressUp(XREventData eventData)

@@ -46,8 +46,11 @@ public class Grabbable : MonoBehaviour, IGlobalTriggerPressSetHandler, IPointerT
 
 
   void Grab(BaseInputModule module) {
-    //Bind the module to this object.
-    grabbingModule = module;
+        view.TransferOwnership(PhotonNetwork.player.ID);
+        Debug.Log(view.owner);
+        Debug.Log(name);
+        //Bind the module to this object.
+        grabbingModule = module;
     //Save the offset between the module and this object. Undo the current rotation of the module
     offset = transform.position - grabbingModule.transform.position;
     offset = Quaternion.Inverse(grabbingModule.transform.rotation) * offset;
@@ -109,7 +112,7 @@ public class Grabbable : MonoBehaviour, IGlobalTriggerPressSetHandler, IPointerT
       //Check for a GlobalGrabber if this object should expect one.
       if (!expectGrabber || (expectGrabber && eventData.module.GetComponent<Grabber>() != null
         && eventData.module.GetComponent<Grabber>().isActiveAndEnabled)) {
-                view.TransferOwnership(PhotonNetwork.player.ID);
+                
         Grab(eventData.module);
       }
     }
