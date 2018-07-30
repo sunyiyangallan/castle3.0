@@ -8320,7 +8320,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6448d894e19a0aa45b9403078a9b2029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mat: {fileID: 0}
+  mat: {fileID: 2100000, guid: 1f9e18a5d9aa3814ea9c5049bf5fd6bc, type: 2}
 --- !u!65 &1051482391
 BoxCollider:
   m_ObjectHideFlags: 0
