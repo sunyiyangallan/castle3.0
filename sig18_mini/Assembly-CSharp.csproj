@@ -345,6 +345,7 @@
     <Compile Include="Assets\Scripts\SelectAnimal.cs" />
     <Compile Include="Assets\Scripts\SelectScript.cs" />
     <Compile Include="Assets\Scripts\setActive.cs" />
+    <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\SpacetimeAvatar\SpacetimeAvatar.cs" />
     <Compile Include="Assets\SpacetimeAvatar\SpacetimeAvatarManager.cs" />
     <Compile Include="Assets\STHand\SpacetimeHand.cs" />

@@ -23,21 +23,23 @@ public class SelectAnimal : MonoBehaviour, IPointerTriggerPressDownHandler, IPoi
             g.GetComponent<SelectScript>().enabled = true;
             //g.GetComponent<CreateCube>().enabled = true;
         }
-        Debug.Log("Passed loop");
-       Debug.Log(Canvas.FindObjectsOfType<Button>()[1]);
+        //Debug.Log("Passed loop");
+       //Debug.Log(Canvas.FindObjectsOfType<Button>()[1]);
         //terrain.GetComponent<CreateCube>().enabled = true;
         foreach (Button b in Canvas.FindObjectsOfType<Button>())
         {
             b.GetComponent<Image>().color = Color.white;
        }
         GetComponent<Image>().color = Color.red;
-        Debug.Log("terrain");
+        //Debug.Log("terrain");
     }
 
     public void OnPointerTriggerPressUp(XREventData eventData)
     {
         //GetComponent<Renderer>().material.color = Color.black;
     }
+
+    
 
     // Use this for initialization
     void Start()
