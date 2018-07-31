@@ -36,11 +36,11 @@ public class GrabAnimal : MonoBehaviour, IPointerTriggerPressDownHandler, IPoint
         //descube.tag = "Untagged";
         objectRenderer = GetComponent<Renderer>();
         Debug.Log("Grab");
-        foreach (Button b in Canvas.FindObjectsOfType<Button>())
+        /*foreach (Button b in Canvas.FindObjectsOfType<Button>())
         {
             b.GetComponent<Image>().color = Color.white;
         }
-        GetComponent<Image>().color = Color.red;
+        GetComponent<Image>().color = Color.red;*/
         
     }
 

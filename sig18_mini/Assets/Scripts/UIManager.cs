@@ -6,12 +6,12 @@ using FRL.IO;
 
 public class UIManager : MonoBehaviour, IPunObservable, IPointerTriggerPressDownHandler, IPointerTriggerPressUpHandler
 {
-
+    private PhotonView view;
     public void OnPointerTriggerPressDown(XREventData eventData)
     {
-        ColorRed();
+        view.RPC("ColorRed", PhotonTargets.All, null);
     }
-        void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    void IPunObservable.OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
     {
         if (stream.isWriting)
         {
@@ -21,17 +21,18 @@ public class UIManager : MonoBehaviour, IPunObservable, IPointerTriggerPressDown
         {
             Color c = (Color)stream.ReceiveNext();
         }
-        foreach (Button b in Canvas.FindObjectsOfType<Button>())
+        /*foreach (Button b in Canvas.FindObjectsOfType<Button>())
         {
             b.GetComponent<Image>().color = Color.white;
         }
-        GetComponent<Image>().color = Color.red;
+        GetComponent<Image>().color = Color.red;*/
 
     }
 
     [PunRPC]
     public void ColorRed()
     {
+        Debug.Log("red");
         foreach (Button b in Canvas.FindObjectsOfType<Button>())
         {
             b.GetComponent<Image>().color = Color.white;
@@ -40,7 +41,7 @@ public class UIManager : MonoBehaviour, IPunObservable, IPointerTriggerPressDown
     }
     // Use this for initialization
     void Start () {
-		
+        view = this.GetComponent<PhotonView>();
 	}
 	
 	// Update is called once per frame
@@ -55,6 +56,6 @@ public class UIManager : MonoBehaviour, IPunObservable, IPointerTriggerPressDown
 
     void IPointerTriggerPressUpHandler.OnPointerTriggerPressUp(XREventData eventData)
     {
-        throw new System.NotImplementedException();
+        view.RPC("ColorRed", PhotonTargets.All, null);
     }
 }

@@ -26,11 +26,11 @@ public class SelectAnimal : MonoBehaviour, IPointerTriggerPressDownHandler, IPoi
         //Debug.Log("Passed loop");
        //Debug.Log(Canvas.FindObjectsOfType<Button>()[1]);
         //terrain.GetComponent<CreateCube>().enabled = true;
-        foreach (Button b in Canvas.FindObjectsOfType<Button>())
+        /*foreach (Button b in Canvas.FindObjectsOfType<Button>())
         {
             b.GetComponent<Image>().color = Color.white;
        }
-        GetComponent<Image>().color = Color.red;
+        GetComponent<Image>().color = Color.red;*/
         //Debug.Log("terrain");
     }
 
