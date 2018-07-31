@@ -102,4 +102,5 @@ MonoBehaviour:
   - SetParallelAvatarPortal
   - SetSpawnFromContainer
   - SetTrailEndAvatar
+  - ColorRed
   DisableAutoOpenWizard: 1
