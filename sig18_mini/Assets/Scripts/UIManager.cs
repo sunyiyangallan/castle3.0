@@ -21,11 +21,7 @@ public class UIManager : MonoBehaviour, IPunObservable, IPointerTriggerPressDown
         {
             Color c = (Color)stream.ReceiveNext();
         }
-        /*foreach (Button b in Canvas.FindObjectsOfType<Button>())
-        {
-            b.GetComponent<Image>().color = Color.white;
-        }
-        GetComponent<Image>().color = Color.red;*/
+        
 
     }
 
