@@ -109,7 +109,7 @@ namespace Com.MyCompany.MyGame
         /// </summary>
         void Update()
         {
-            if (GetComponent<NetworkView>().isMine)
+            if (true)//GetComponent<NetworkView>())
             {
                 ProcessInputs();
             }
